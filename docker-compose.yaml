@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:12.1
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: superpassword # Update with your chosen password
+      POSTGRES_DB: app
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    container_name: app-container
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
