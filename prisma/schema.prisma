@@ -19,6 +19,16 @@ model User {
   email         String         @unique
   password      String?
   refreshTokens RefreshToken[]
+  images        Image[] // Relación uno a muchos con Image
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  name      String
+  image     String?
+  createdAt DateTime @default(now())
+  userId    String // Campo para la relación con User
+  user      User     @relation(fields: [userId], references: [id]) // Relación con User
 }
 
 model RefreshToken {

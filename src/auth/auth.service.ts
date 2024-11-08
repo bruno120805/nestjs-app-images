@@ -18,9 +18,6 @@ export class AuthService {
   }
 
   async validateUser(userDetails: UserDetails) {
-    // console.log('AuthService');
-    // console.log(userDetails);
-
     const user = await this.prisma.user.findFirst({
       where: { email: userDetails.email },
     });
@@ -35,9 +32,11 @@ export class AuthService {
       },
     });
 
+    delete newUser.password;
+
     return {
       newUser,
-      accessToken: this.jwtService.sign({ email: userDetails.email }),
+      accessToken: this.jwtService.sign({ email: user.email, id: user.id }),
     };
   }
 
@@ -69,9 +68,11 @@ export class AuthService {
 
       const refreshToken = await this.generateRefreshToken(user.id);
 
+      delete user.password;
+
       return {
         user,
-        accessToken: this.jwtService.sign({ email: user.email }),
+        accessToken: this.jwtService.sign({ email: user.email, id: user.id }),
         refreshToken,
       };
     } catch (error) {
@@ -97,9 +98,11 @@ export class AuthService {
 
     const refreshToken = await this.generateRefreshToken(user.id);
 
+    delete user.password;
+
     return {
       user,
-      jwt: this.jwtService.sign({ email: user.email }),
+      accessToken: this.jwtService.sign({ email: user.email, id: user.id }),
       refreshToken,
     };
   }
@@ -127,7 +130,10 @@ export class AuthService {
       where: { id: storedToken.userId },
     });
 
-    const newAccessToken = this.jwtService.sign({ email: user.email });
+    const newAccessToken = this.jwtService.sign({
+      email: user.email,
+      id: user.id,
+    });
     return { accessToken: newAccessToken };
   }
 }

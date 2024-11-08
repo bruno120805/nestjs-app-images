@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { PassportModule } from '@nestjs/passport';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -12,8 +12,10 @@ import { PassportModule } from '@nestjs/passport';
     PassportModule.register({
       session: true,
     }),
+    ImagesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
+  exports: [],
 })
 export class AppModule {}
