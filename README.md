@@ -48,14 +48,14 @@ $ http://localhost:4555/api/auth/login
 $ http://localhost:4555/api/images
 
   Obtener imagen por Id
-$ http://localhost:3001/api/images/:imageId
+$ http://localhost:4555/api/images/:imageId
 
   Hacer uso del la autenticacion de Google
-$ http://localhost:3001/api/auth/google/login
+$ http://localhost:4555/api/auth/google/login
 
   Transformar imagen
-$ http://localhost:3001/api/images/:imageId/transform
+$ http://localhost:4555/api/images/:imageId/transform
 
   Eliminar Imagen
-$ http://localhost:3001/api/images/:imageId
+$ http://localhost:4555/api/images/:imageId
 ```
