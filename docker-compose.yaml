@@ -7,6 +7,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      # DATABASE_URL: ${DATABASE_URL}
     volumes:
       - ./data:/var/lib/postgresql/data
     container_name: app-container
