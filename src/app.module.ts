@@ -5,6 +5,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { PassportModule } from '@nestjs/passport';
 import { ImagesModule } from './images/images.module';
 import { ConfigModule } from '@nestjs/config';
+import { SwaggerModule } from '@nestjs/swagger';
 
 @Module({
   imports: [

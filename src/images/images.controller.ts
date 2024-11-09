@@ -21,6 +21,7 @@ import { ImageDetailsDto } from './dto/image-details.dto';
 import { TransformImageDto } from './dto/transform-image.dto';
 import { ImagesService } from './images.service';
 import { EventPattern, Payload } from '@nestjs/microservices';
+import { PaginationDto } from './dto/pagination.dto';
 
 @Controller('images')
 export class ImagesController {
@@ -60,8 +61,8 @@ export class ImagesController {
 
   @Get()
   getAllImages(
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
+    @Query('page') page: PaginationDto['page'] = 1,
+    @Query('limit') limit: PaginationDto['limit'] = 10,
   ) {
     // Define un valor máximo para limit, por ejemplo, 100, para evitar sobrecargar el sistema con demasiados resultados
     const maxLimit = 100;
